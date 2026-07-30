@@ -1,6 +1,6 @@
 version: "3.8"
 
-services:Q
+services:
   mysql:
     image: mysql:8.4
     container_name: mysql-container-fraudapp

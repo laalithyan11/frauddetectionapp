@@ -2,7 +2,6 @@ package com.finance.frauddetection.repository;
 
 import com.finance.frauddetection.model.Transaction;
 import org.springframework.context.annotation.Profile;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -17,7 +16,7 @@ import java.util.List;
 @Profile("JDBC")
 public class SQLTransactionRepository implements ITransactionRepository {
 
-    private JdbcTemplate jdbcTemplate;
+    private final org.springframework.jdbc.core.JdbcTemplate jdbcTemplate;
     private RowMapper<Transaction> rowMapper = (ResultSet rs, int rowNum) -> new Transaction(
             rs.getInt("id"),
             rs.getInt("customer_id"),
@@ -27,7 +26,7 @@ public class SQLTransactionRepository implements ITransactionRepository {
             rs.getString("status")
     );
 
-    public SQLTransactionRepository(JdbcTemplate jdbcTemplate){
+    public SQLTransactionRepository(org.springframework.jdbc.core.JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
 
