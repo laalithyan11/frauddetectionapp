@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
 
     environment {
@@ -8,7 +7,6 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout Source') {
             steps {
                 git branch: "${BRANCH}",
@@ -21,3 +19,5 @@ pipeline {
                 sh 'mvn clean package -DskipTests'
             }
         }
+    }
+}
